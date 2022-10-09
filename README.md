@@ -2,4 +2,4 @@
 
 This is a short term pattern memory game. 
 
-![Screenshot](/src/Screenshot.png)
+![Screenshot](/src/ScreenShot.png)
