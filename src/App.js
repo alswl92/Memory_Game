@@ -6,6 +6,7 @@ function App() {
   const [isOn, setIsOn] = useState(false);
   const [startButton,setStartButton] = useState(false);
   const [gameoverDiv, setGameoverDiv] = useState(false);
+  const [scoreDiv,setScoreDiv] = useState(true);
   const patternList = ['1','2','3','4','5'];
   const initPlay = {
     pattern: [],
@@ -19,6 +20,7 @@ function App() {
   function startClicked() {
     setIsOn(true);
     setStartButton(true);
+    setScoreDiv(false);
   }
 
   useEffect(() => {
@@ -62,18 +64,18 @@ function App() {
         if(copyUserGuess.length){ //if there is remaining
           setPlay({...play, userGuess: copyUserGuess}); //one less color
         }
-        else{ //if this is the last color, we wnat to move to the next level
+        else{ //if this is the last color, we want to move to the next level
           await timeout(200);
           setPlay({...play, userPlay:false, score:play.pattern.length, userGuess:[],}); //keeping the system pattern but emptying the guess
           setIsOn(true);
         }
       }else{ //if fails
-        await timeout(1000);
+        await timeout(200);
         setPlay({...initPlay, score:play.pattern.length});
         setIsOn(false);
         setGameoverDiv(true);
       }
-      await timeout(500); //resets
+      await timeout(200); //resets
       setBlink('');
     }
   }
@@ -86,6 +88,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">Memorize the Pattern!</h1>
+      <div className='score' hidden ={scoreDiv}>Level: {play.score +1}</div>
       <button className = 'btn' onClick={startClicked} hidden = {startButton}>Start Game</button>
       <div className="app_container">
         {patternList && patternList.map((v,i) => 
