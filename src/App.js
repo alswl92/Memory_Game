@@ -83,6 +83,7 @@ function App() {
   function closeClicked(){
     setGameoverDiv(false);
     setStartButton(false);
+    setScoreDiv(true);
   }
 
   return (
