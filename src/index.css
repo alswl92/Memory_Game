@@ -8,48 +8,71 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+  background-color: #f4eee8;
 }
 
 :root{
-  --color-one: #AA4341;
-  --color-two: #779B34;
-  --color-three: #DEBD4F;
-  --color-four: #80C8CF;
-  --color-five: #E99FAA;
+  --color-one: #ca6c6c;
+  --color-two: #677784;
+  --color-three: #ffb4b4;
+  --color-four: #adc7dc;
+  --color-five: #e8ca93;
   --color-blink: white;
-  --color-dark: #151816;
-  --color-light: #DCBBA0;
+  --color-dark: #2a2b2c;
+  --color-light: #f4eee8;
 
 }
 body{
   font-family: 'Quicksands', sans-serif;
 }
-
-.App{
-  width: 100%;
+.home{
   height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  gap: 1em;
+}
+
+.game{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  background-image: radial-gradient(circle, white, var(--color-light), var(--color-five));
+  background-color: var(--color-dark);
 }
 
 h1{
-  color: var(--color-blink);
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
-}
-.btn{
-  background-color: var(--color-five);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   color: var(--color-dark);
-  border-radius: 12px;
-  width: 30%;
-  height: 2rem;
-  cursor: pointer;
-  font-size: 1.3rem;
 }
+
+.waitDiv{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.39);
+  position: absolute;
+}
+
+.btn{
+   cursor: pointer;
+   outline: 0;
+   color: #fff;
+   background-color: #677784;
+   border-color: #677784;
+   font-weight: 400;
+   line-height: 1.5;
+   text-align: center;
+   border: 1px solid transparent;
+   padding: 6px 12px;
+   font-size: 16px;
+   border-radius: .25rem;
+   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
 
 .btn:hover{
   background-color: var(--color-five);
@@ -61,6 +84,16 @@ h1{
   font-size: 1.3rem;
 }
 
+.instruction{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 40rem;
+   width: 40vw;
+   background-color: #2a2b2c;
+}
+
 .app_container{
   width: 40rem;
   height: 40rem;
@@ -69,6 +102,7 @@ h1{
   grid-template-rows: repeat(4,1fr);
   gap: 1.5rem;
   cursor: pointer;
+  background-color: var(--color-dark);;
 }
 
 .blink.blink{
