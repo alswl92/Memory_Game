@@ -43,9 +43,9 @@ function Game({ onClose }) {
 
   async function displayPattern(){
     await timeout(500);
-    setChallengeOn(true);
     for (let i =0 ; i < play.pattern.length; i++){
       setBlink(play.pattern[i]);
+      setChallengeOn(true);
       await timeout(500);
       setBlink('');
       await timeout(500);
@@ -73,7 +73,6 @@ function Game({ onClose }) {
           await timeout(200);
           setPlay({...play, userPlay:false, score:play.pattern.length, userGuess:[],}); //keeping the system pattern but emptying the guess
           setIsOn(true);
-          setChallengeOn(false);
         }
       }else{ //if fails
         await timeout(200);
@@ -82,6 +81,7 @@ function Game({ onClose }) {
         setGameoverDiv(true);
       }
       await timeout(200); //resets
+      setChallengeOn(false);
       setBlink('');
     }
   }
@@ -92,24 +92,25 @@ function Game({ onClose }) {
 
 
   return (
-    <div className="game">
-      <div className='instruction'>
-         <div className='score' hidden ={scoreDiv}>Level: {play.score +1}</div>
-         <div className='instruction_txt' hidden ={!startButton}>{challengeOn ? 'Memorize NOW' : 'Guessing Time!'}</div>
-         <button className = 'btn' onClick={startClicked} hidden = {startButton}> Click If You Are Ready</button>
+   <div className="game">
+      <div className='game_container'>
+         <div className='instruction'>
+            <div className='score' hidden ={scoreDiv}>Level: {play.score +1}</div>
+            <div className='instruction_txt' hidden ={!startButton}>{challengeOn ? 'Memorize NOW' : 'Guessing Time!'}</div>
+            <button className = 'btn' onClick={startClicked} hidden = {startButton}> Click If You Are Ready</button>
+         </div>
+         <div className="box_container">
+            {patternList && patternList.map((v,i) => 
+            <Box key = {v} id ={v} blink = {blink ===v} onClick = {() => boxClick(v)}></Box>)}
+         </div>
       </div>
-      <div className="app_container">
-        {patternList && patternList.map((v,i) => 
-        <Box key = {v} id ={v} blink = {blink ===v} onClick = {() => boxClick(v)}></Box>)}
-        {gameoverDiv && (
-          <div className = 'gameover' hidden= {gameoverDiv}>
-            <div>Final Score: {play.score}</div>
-            <button className='btn' onClick={closeClicked}>Close</button>
-          </div>
-      )}
-     
-      </div>
-    </div>
+      {gameoverDiv && (
+               <div className = 'gameover' hidden= {gameoverDiv}>
+               <div className='gameover_txt'>Final Score: {play.score}</div>
+               <button className='btn' onClick={closeClicked}>Close</button>
+               </div>
+            )}
+   </div>
   );
 }
 export default Game;
